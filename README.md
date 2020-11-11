@@ -1,4 +1,4 @@
-# HB-CDL-6 
+# HB-CDL-6 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 ein Asksin++ basiertes Touch-Codeschloss 
 
 ![alt text](https://github.com/trilu2000/HB-CDL-6/blob/main/Bilder/small/IMG_20201111_105313.jpg)
