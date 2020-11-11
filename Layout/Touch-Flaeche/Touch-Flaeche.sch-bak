@@ -1,0 +1,224 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "Codeschloss - Touchflaeche"
+Date "2019-10-22"
+Rev "0.1"
+Comp "privat project"
+Comment1 "Horst Bittner"
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Touchpad:MPR121_Module U4
+U 1 1 5DB7199E
+P 5550 3350
+F 0 "U4" H 5550 4115 50  0000 C CNN
+F 1 "MPR121_Module" H 5550 4024 50  0000 C CNN
+F 2 "touchpad:MPR121_SMD" H 5550 3350 50  0001 C CNN
+F 3 "" H 5550 3350 50  0001 C CNN
+	1    5550 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Touchpad:touchpad_small P2
+U 1 1 5DB87C3C
+P 6850 2850
+F 0 "P2" H 6800 2850 50  0000 C CNN
+F 1 "touchpad_small" H 6900 2950 50  0001 C CNN
+F 2 "touchpad:touchpad_small" H 6850 2900 50  0001 C CNN
+F 3 "" H 6850 2900 50  0001 C CNN
+	1    6850 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Touchpad:touchpad_small P3
+U 1 1 5DB881BC
+P 6850 2950
+F 0 "P3" H 6800 2950 50  0000 C CNN
+F 1 "touchpad_small" H 6900 3050 50  0001 C CNN
+F 2 "touchpad:touchpad_small" H 6850 3000 50  0001 C CNN
+F 3 "" H 6850 3000 50  0001 C CNN
+	1    6850 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Touchpad:touchpad_small P4
+U 1 1 5DB88418
+P 6850 3050
+F 0 "P4" H 6800 3050 50  0000 C CNN
+F 1 "touchpad_small" H 6900 3150 50  0001 C CNN
+F 2 "touchpad:touchpad_small" H 6850 3100 50  0001 C CNN
+F 3 "" H 6850 3100 50  0001 C CNN
+	1    6850 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Touchpad:touchpad_small P5
+U 1 1 5DB885B3
+P 6850 3150
+F 0 "P5" H 6800 3150 50  0000 C CNN
+F 1 "touchpad_small" H 6900 3250 50  0001 C CNN
+F 2 "touchpad:touchpad_small" H 6850 3200 50  0001 C CNN
+F 3 "" H 6850 3200 50  0001 C CNN
+	1    6850 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Touchpad:touchpad_small P6
+U 1 1 5DB88770
+P 6850 3250
+F 0 "P6" H 6800 3250 50  0000 C CNN
+F 1 "touchpad_small" H 6900 3350 50  0001 C CNN
+F 2 "touchpad:touchpad_small" H 6850 3300 50  0001 C CNN
+F 3 "" H 6850 3300 50  0001 C CNN
+	1    6850 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Touchpad:touchpad_small P7
+U 1 1 5DB888C4
+P 6850 3350
+F 0 "P7" H 6800 3350 50  0000 C CNN
+F 1 "touchpad_small" H 6900 3450 50  0001 C CNN
+F 2 "touchpad:touchpad_small" H 6850 3400 50  0001 C CNN
+F 3 "" H 6850 3400 50  0001 C CNN
+	1    6850 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Touchpad:touchpad_small P8
+U 1 1 5DB88A78
+P 6850 3450
+F 0 "P8" H 6800 3450 50  0000 C CNN
+F 1 "touchpad_small" H 6900 3550 50  0001 C CNN
+F 2 "touchpad:touchpad_small" H 6850 3500 50  0001 C CNN
+F 3 "" H 6850 3500 50  0001 C CNN
+	1    6850 3450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Touchpad:touchpad_small P9
+U 1 1 5DB88C06
+P 6850 3550
+F 0 "P9" H 6800 3550 50  0000 C CNN
+F 1 "touchpad_small" H 6900 3650 50  0001 C CNN
+F 2 "touchpad:touchpad_small" H 6850 3600 50  0001 C CNN
+F 3 "" H 6850 3600 50  0001 C CNN
+	1    6850 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Touchpad:touchpad_small P10
+U 1 1 5DB88D8F
+P 6850 3650
+F 0 "P10" H 6800 3650 50  0000 C CNN
+F 1 "touchpad_small" H 6900 3750 50  0001 C CNN
+F 2 "touchpad:touchpad_small" H 6850 3700 50  0001 C CNN
+F 3 "" H 6850 3700 50  0001 C CNN
+	1    6850 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Touchpad:touchpad_small P11
+U 1 1 5DB88F92
+P 6850 3750
+F 0 "P11" H 6800 3750 50  0000 C CNN
+F 1 "touchpad_small" H 6900 3850 50  0001 C CNN
+F 2 "touchpad:touchpad_small" H 6850 3800 50  0001 C CNN
+F 3 "" H 6850 3800 50  0001 C CNN
+	1    6850 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Touchpad:touchpad_small P12
+U 1 1 5DB891C1
+P 6850 3850
+F 0 "P12" H 6800 3850 50  0000 C CNN
+F 1 "touchpad_small" H 6900 3950 50  0001 C CNN
+F 2 "touchpad:touchpad_small" H 6850 3900 50  0001 C CNN
+F 3 "" H 6850 3900 50  0001 C CNN
+	1    6850 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Touchpad:touchpad_small P13
+U 1 1 5DB8940C
+P 6850 3950
+F 0 "P13" H 6800 3950 50  0000 C CNN
+F 1 "touchpad_small" H 6900 4050 50  0001 C CNN
+F 2 "touchpad:touchpad_small" H 6850 4000 50  0001 C CNN
+F 3 "" H 6850 4000 50  0001 C CNN
+	1    6850 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Touchpad:touchpad_small P1
+U 1 1 5DB9A797
+P 6850 2700
+F 0 "P1" H 6800 2700 50  0000 C CNN
+F 1 "touchpad_small" H 6900 2800 50  0001 C CNN
+F 2 "touchpad:touchpad_big" H 6850 2750 50  0001 C CNN
+F 3 "" H 6850 2750 50  0001 C CNN
+	1    6850 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6600 2700 6400 2700
+Wire Wire Line
+	6400 2700 6400 2850
+$Comp
+L Connector:Conn_01x06_Male J7
+U 1 1 5F8CC4C2
+P 4450 3250
+F 0 "J7" H 4558 3631 50  0000 C CNN
+F 1 "Conn_Male" H 4558 3540 50  0000 C CNN
+F 2 "Connector_PinHeader_2.00mm:PinHeader_1x06_P2.00mm_Vertical_SMD_Pin1Left" H 4450 3250 50  0001 C CNN
+F 3 "~" H 4450 3250 50  0001 C CNN
+	1    4450 3250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6150 2850 6400 2850
+Connection ~ 6400 2850
+Wire Wire Line
+	6400 2850 6600 2850
+Wire Wire Line
+	6150 2950 6600 2950
+Wire Wire Line
+	6150 3050 6600 3050
+Wire Wire Line
+	6150 3150 6600 3150
+Wire Wire Line
+	6150 3250 6600 3250
+Wire Wire Line
+	6150 3350 6600 3350
+Wire Wire Line
+	6150 3450 6600 3450
+Wire Wire Line
+	6150 3550 6600 3550
+Wire Wire Line
+	6150 3650 6600 3650
+Wire Wire Line
+	6150 3750 6600 3750
+Wire Wire Line
+	6150 3850 6600 3850
+Wire Wire Line
+	6150 3950 6600 3950
+Wire Wire Line
+	4650 3050 4950 3050
+Wire Wire Line
+	4650 3150 4950 3150
+Wire Wire Line
+	4650 3250 4950 3250
+Wire Wire Line
+	4650 3350 4950 3350
+Wire Wire Line
+	4650 3450 4950 3450
+Wire Wire Line
+	4650 3550 4950 3550
+$EndSCHEMATC
