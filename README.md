@@ -15,6 +15,8 @@ ein Asksin++ basiertes Touch-Codeschloss
 * Verwalten der PIN's über die CCU Oberfläche
 * Stromversorgung ist an die lokalen Gegebenheiten anpassbar (<20 V AC, <20V DC, 5V DC)
 
+Support thread: https://homematic-forum.de/forum/viewtopic.php?f=76&t=62530
+
 ## Nutzung
 
 Zuerst muss das Device natürlich mit der CCU verbunden werden. Per Default ist der Klingelknopf auf Kanal 6 geschaltet und braucht natürlich kein Passwort.
