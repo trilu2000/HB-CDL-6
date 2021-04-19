@@ -201,11 +201,11 @@ public:
 
 	void firstinit() {
 		uint8_t temp_byte_array[9];
-		memset(temp_byte_array, 0x45, 9);
+		memset(temp_byte_array, 0x00, 9);
 		for (uint8_t i = 0; i < 2; i++) {
 			//DPRINT("finit "); DPRINT(number()); DPRINT(", "); DPRINTLN(i);
 			uint8_t *temp = temp_byte_array;
-			if (this->number() == 1) temp = master_pwd;
+			if ((this->number() == 1) && (i == 0)) temp = master_pwd;
 			this->getList1().byte_array(i, temp);
 		}
 	}
@@ -316,7 +316,7 @@ class CodeLock : public Alarm, public MPR121<keymap>  {
 	uint8_t check_password(uint8_t slotnr, uint8_t* passwd) {						// validates a given password aganst the slotstring password
 		uint8_t* slotstr = get_slot(slotnr) + 1;													// password starts after the channel byte
 		uint8_t ret = comp_8byte_array(slotstr, passwd);
-		//DPRINT(F("chk pw: ")); DPRINT(slotnr); DPRINT(F(",slotpw: ")); DHEX(slotstr, 8);; DPRINT(F(",pw: ")); DHEX(passwd, 8); DPRINT(F(",ret: ")); DPRINTLN(ret);
+		DPRINT(F("chk pw: ")); DPRINT(slotnr); DPRINT(F(",slotpw: ")); DHEX(slotstr, 8);; DPRINT(F(",pw: ")); DHEX(passwd, 8); DPRINT(F(",ret: ")); DPRINTLN(ret);
 		return ret;
 	}
 	uint8_t get_password_slot(uint8_t* passwd) {												// returns the slot nummer of the given password, 0xff if not found
@@ -380,16 +380,26 @@ public:
 		}
 	}
 	void check_buffer() {
-		if (buffer.pos() < 4) goto clear;																// we need at least 2 digit input	
+		uint8_t minpos = (prg_mode)?0:4;
+		if (buffer.pos() < minpos) goto clear;														// we need at least 3 digit input if not in prog mode
 
-		uint8_t cnl = buffer.channel();																	// get the buffer channel byte
-		uint8_t prg_slot = buffer.prg_slot();														// get the slot number, only if in prg mode
-		uint8_t pwd_slot = get_password_slot(buffer.passwd());					// check if we find the password, 0xff if not
+		uint8_t cnl = buffer.channel();																		// get the buffer channel byte
+		uint8_t prg_slot = buffer.prg_slot();															// get the slot number, only if in prg mode
+		uint8_t pwd_slot = get_password_slot(buffer.passwd());						// check if we find the password, 0xff if not
 
 		//DPRINT(F("check- pwd: ")); DHEX(buffer.passwd(),8); DPRINT(F(", cnl: ")); DHEX(cnl); DPRINT(F(", prg_slot: ")); DHEX(prg_slot); DPRINT(F(", pwd_slot: ")); DHEXLN(pwd_slot);  // some debug message
 
-		if ((cnl == 0) && (pwd_slot == 0)) {
-			/* check if the program mode channel is addressed and the master password was entered */
+		// normal operation: enter channel number and password followed by #
+		// enter program mode: input 0 followed by the slot 1 password (masterpassword) and confirm with #
+		//   you should hear a double beep and see a changed background light color, now you have 30 secs for the next step
+		// change password within the program mode: input a double digit password slot (1 to 12) followed by channel byte and the new password, confirmed with #
+		//   you should hear a double beep
+		// send the pairing string within program mode: input 99 followed by #
+		//   this leaves the program mode, you hear a double beep and the background light color changes
+
+
+		if ((!prg_mode) && (cnl == 0) && (pwd_slot == 0)) {
+			// check if the program mode channel is addressed and the master password was entered 
 			DPRINTLN(F("prog mode"));
 			prg_mode = 1;
 			start_timeout(30000);
@@ -397,28 +407,38 @@ public:
 			goto confirmclear;
 		}
 
-		if((prg_mode) && (cnl) && (cnl <= NR_CDL_CHANNELS)) {
-			/* if we are in program mode and someone entered a new password */
+		if ((prg_mode) && (cnl) && (cnl <= NR_CDL_CHANNELS)) {
+			// if we are in program mode and someone entered a new password 
 			DPRINT(F("slot:")); DPRINT(prg_slot); DPRINT(F(", cnl:")); DPRINT(cnl); DPRINT(F(", pwd:")); DHEXLN(buffer.passwd(), 8);
 			start_timeout(30000);
-			// write into register
+			// write into register - 
+			start_timeout();
 			goto confirmclear;
 		}
 
-		if((!cnl) && (!prg_slot)) {
-			/* check if we are asked to end the prog mode */
+		if ((prg_mode) && (cnl == 0) && (prg_slot == 99)) {
+			// check if we are asked to send a pairing string 
+			DPRINTLN(F("send pairing"));
+			sdev.startPairing();
+			start_timeout();
+			goto confirmclear;
+		}
+
+		if((prg_mode) && (!cnl) && (!prg_slot)) {
+			// check if we are asked to end the prog mode 
 			DPRINTLN(F("end prog mode"));
 			start_timeout();
 			goto confirmclear;
 		}
 
-		if((!prg_mode) && (cnl) && (cnl <= NR_CDL_CHANNELS) && (pwd_slot != 0xff)) {
-			/* check if we are asked to send a channel state */
+		if ((!prg_mode) && (cnl) && (cnl <= NR_CDL_CHANNELS) && (pwd_slot != 0xff)) {
+			// check if we are asked to send a channel state */
 			uint8_t access = validate_access(pwd_slot, cnl);							// check if this password has access to the given channel
 			if (!access) goto clear;																			// no access, leave
 			sdev.channel(cnl).state(1);																		// send the channel message
 			goto confirmclear;
 		}
+
 		goto clear;
 
 	confirmclear:
@@ -448,7 +468,7 @@ void setup() {
 	//sdev.channel(2).getList1().byte_array(0, x);
 	//sdev.sendInfoParamResponsePairs();
 
-	// scan i2c bus for devices
+	/* scan i2c bus for devices
 	DPRINTLN(F("I2C scan..."));
 	for (uint8_t i = 1; i < 127; i++) {
 		Wire.beginTransmission(i);
@@ -461,8 +481,8 @@ void setup() {
 			DPRINT(F("error at 0x")); DHEXLN(i);
 		}
 	}
-	DPRINTLN(F("done"));
-	// -------------------------
+	DPRINTLN(F("done"));*/
+
 }
 
 void loop() {
